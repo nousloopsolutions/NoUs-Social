@@ -1,8 +1,8 @@
 # NoUs — Project Reference (for social agents)
 
 Reference material so content agents represent the project accurately. Source: the
-Nous-hub repository README (the canonical "single source of truth"). Keep this file in
-sync if Nous-hub's description changes. Public site: https://nousloop.com
+NoUs-hub repository README (the canonical "single source of truth"). Keep this file in
+sync if NoUs-hub's description changes. Public site: https://nousloop.com
 
 ## What NoUs is
 NoUs Loop Solutions is building a sovereign, privacy-first AI system. The work is
