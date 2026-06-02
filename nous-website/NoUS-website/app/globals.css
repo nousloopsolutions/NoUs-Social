@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Nousloop — Cyberpunk Underground Human Revolution */
+    --background: 190 30% 4%; /* #070C0D - cold near-black with cyan undertone */
+    --foreground: 180 20% 95%; /* #ECF4F4 - cold ghost white */
+
+    --muted: 190 22% 9%; /* #11191A - dark slate */
+    --muted-foreground: 185 12% 60%; /* #8DA0A1 - cold gray */
+    --muted-foreground-light: 185 12% 60% / 0.5;
+    --muted-foreground-dark: 185 12% 60% / 0.7;
+
+    --card: 190 24% 7%; /* #0C1314 - card surface */
+    --card-foreground: 180 20% 95%;
+
+    --popover: 190 26% 6%;
+    --popover-foreground: 180 20% 95%;
+
+    /* Primary Accent — Neon Resistance Teal */
+    --primary: 172 90% 55%; /* #28EFD0 - electric teal/cyan glow */
+    --primary-foreground: 190 40% 4%; /* near-black */
+    --primary-dark: 174 84% 42%; /* deeper teal */
+    --primary-light: 168 88% 72%; /* bright teal glow */
+
+    /* Secondary Accent */
+    --secondary: 180 20% 95%;
+    --secondary-foreground: 190 40% 4%;
+
+    --accent: 190 22% 9%;
+    --accent-foreground: 180 20% 95%;
+
+    /* Alert / Rebellion — Blood Red */
+    --destructive: 357 90% 60%; /* #F23842 - neon blood red */
+    --destructive-foreground: 180 20% 95%;
+
+    --border: 172 90% 55% / 0.1; /* faint teal grid lines */
+    --border-light: 180 20% 95% / 0.1;
+    --border-dark: 180 20% 95% / 0.05;
+
+    --ring: 172 90% 55%;
+
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 8px hsl(var(--primary) / 0.7), 0 0 24px hsl(var(--primary) / 0.4);
+  }
+  .text-glow-red {
+    text-shadow: 0 0 8px hsl(var(--destructive) / 0.7), 0 0 24px hsl(var(--destructive) / 0.4);
+  }
+  .box-glow {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.35), inset 0 0 12px hsl(var(--primary) / 0.1);
+  }
+}
