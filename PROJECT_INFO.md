@@ -6,7 +6,7 @@ sync if NoUs-hub's description changes. Public site: https://nousloop.com
 
 ## What NoUs is
 NoUs Loop Solutions is building a sovereign, privacy-first AI system. The work is
-consolidated in one canonical monorepo, Nous-hub (the "Sovereign Megahub"),
+consolidated in one canonical monorepo, NoUs-hub (the "Sovereign Megahub"),
 established March 2026, which holds all logic, UI, ops, and documentation for the
 long-term NoUs IP. Core idea: keep cognition local and user-controlled rather than
 dependent on Big Tech infrastructure.
