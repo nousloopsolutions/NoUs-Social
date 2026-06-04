@@ -1,0 +1,8 @@
+/* The Cognitive Sovereignty Act — governmental / legislative overrides (optional) */
+/* Base styles are inlined in index.html for reliability. */
+
+@media print {
+  body { padding: 1rem; }
+  .section { page-break-inside: avoid; }
+  footer { break-inside: avoid; }
+}
