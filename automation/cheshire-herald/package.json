@@ -1,0 +1,17 @@
+{
+  "name": "cheshire-herald",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cheshire-Herald — weekly social drafts via Workers AI, KV staging, human ratification",
+  "scripts": {
+    "dev": "wrangler dev -c wrangler.toml",
+    "deploy": "wrangler deploy -c wrangler.toml",
+    "deploy:dry-run": "wrangler deploy --dry-run -c wrangler.toml",
+    "cf-typegen": "wrangler types -c wrangler.toml"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240524.0",
+    "typescript": "^5.4.5",
+    "wrangler": "^4.95.0"
+  }
+}

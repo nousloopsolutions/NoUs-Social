@@ -1,0 +1,68 @@
+/* ── NoUs L∞P: one coordinated neon machine, 14s master cycle ─────────────────────────────
+   0–14%   LOCKED: "NoUs L∞P", steady.
+   14–20%  UNLOCK: every glyph jolts loose, the flicker starts.
+   20–58%  TRANSFORM: No | Us pull apart → the U folds to a lowercase u (Nous) → the s swells (NoUS);
+           the lens o turns a full rotation, N swings, L drops, P cranks; the ∞ tears apart and
+           struggles; L and P blink out like failing neon.
+   58–70%  REASSEMBLE: glyphs click home one after another with a mechanical overshoot; the ∞ welds
+           shut with steam; L and P blink back on.
+   70–100% LOCKED: the whole mark surges brighter together, and the ∞ spins like a working engine. */
+@property --nl-fade  { syntax: "<number>"; inherits: true; initial-value: 1; }
+@property --nl-flick { syntax: "<number>"; inherits: true; initial-value: 1; }
+.nl-wm .nl-wm-glyph { animation: 14s cubic-bezier(.68,-.25,.27,1.35) infinite; }
+.nl-wm .nl-wm-g--n { animation-name: nl-g-n; }
+.nl-wm .nl-wm-g--o { animation-name: nl-g-o; }
+.nl-wm .nl-wm-g--u { animation-name: nl-g-u; }
+.nl-wm .nl-wm-g--s { animation-name: nl-g-s; }
+.nl-wm .nl-wm-g--l { animation-name: nl-g-l, nl-wm-fade; animation-timing-function: cubic-bezier(.68,-.25,.27,1.35), steps(1); }
+.nl-wm .nl-wm-g--p { animation-name: nl-g-p, nl-wm-fade; animation-timing-function: cubic-bezier(.68,-.25,.27,1.35), steps(1); }
+@keyframes nl-g-n { 0%, 14% { transform: none; } 16% { transform: translate(-3px,-2px) rotate(-3deg); } 21% { transform: translateX(-18px) rotate(-6deg); } 30% { transform: translateX(-20px) rotate(-6deg); }
+  36% { transform: translate(-8px,-4px) rotate(4deg); } 46% { transform: translateX(-4px); } 52% { transform: translate(-10px,3px) rotate(-4deg); } 58% { transform: translateX(2px) rotate(1deg); } 61%, 100% { transform: none; } }
+@keyframes nl-g-o { 0%, 14% { transform: rotate(0deg); } 16% { transform: rotate(30deg); } 21% { transform: translateX(-18px) rotate(120deg) scale(.9); } 30% { transform: translateX(-20px) rotate(180deg) scale(.9); }
+  40% { transform: translateX(-6px) rotate(260deg) scale(1.1); } 52% { transform: rotate(330deg) scale(.95); } 60% { transform: rotate(355deg); } 63%, 100% { transform: rotate(360deg); } }
+@keyframes nl-g-u { 0%, 14% { transform: none; } 16% { transform: translateY(-3px); } 21% { transform: translateX(18px); } 30% { transform: translateX(20px); } 37% { transform: translateX(6px) scaleY(.58); }
+  46% { transform: scaleY(.58); } 52% { transform: translateX(4px) scaleY(.9) rotate(4deg); } 60% { transform: scaleY(1.05); } 63%, 100% { transform: none; } }
+@keyframes nl-g-s { 0%, 14% { transform: none; } 16% { transform: rotate(6deg); } 21% { transform: translateX(18px) rotate(-8deg); } 30% { transform: translateX(20px); } 40% { transform: translateX(6px) rotate(10deg); }
+  46% { transform: scale(1.5); } 56% { transform: scale(1.5) rotate(-4deg); } 62% { transform: scale(.95); } 65%, 100% { transform: none; } }
+@keyframes nl-g-l { 0%, 14% { transform: none; } 18% { transform: translateY(4px) rotate(-4deg); } 30% { transform: translateY(10px) rotate(-12deg); } 50% { transform: translate(-6px,6px) rotate(8deg); } 63% { transform: translateY(-3px); } 67%, 100% { transform: none; } }
+@keyframes nl-g-p { 0%, 14% { transform: none; } 18% { transform: rotate(5deg); } 30% { transform: translate(10px,6px) rotate(14deg); } 50% { transform: translate(4px,-4px) rotate(-6deg); } 65% { transform: rotate(2deg); } 69%, 100% { transform: none; } }
+/* L and P blink out like failing neon while the loop is torn, and blink back on as it welds */
+@keyframes nl-wm-fade { 0%, 18% { --nl-fade: 1; } 19% { --nl-fade: .25; } 20% { --nl-fade: .85; } 22% { --nl-fade: .1; } 24% { --nl-fade: .5; } 26%, 60% { --nl-fade: .06; } 62% { --nl-fade: .7; } 63% { --nl-fade: .15; } 65% { --nl-fade: .9; } 66% { --nl-fade: .3; } 68%, 100% { --nl-fade: 1; } }
+/* every glyph flickers slightly on its own rhythm (a separate inner layer, offset per glyph) */
+.nl-wm .nl-wm-flick { animation: nl-wm-flick 7s steps(1) infinite; }
+@keyframes nl-wm-flick { 0%, 100% { --nl-flick: 1; } 9% { --nl-flick: .78; } 10% { --nl-flick: 1; } 31% { --nl-flick: .62; } 32% { --nl-flick: .95; } 33% { --nl-flick: .7; } 34% { --nl-flick: 1; } 58% { --nl-flick: .85; } 59% { --nl-flick: 1; } 81% { --nl-flick: .66; } 82% { --nl-flick: 1; } }
+.nl-wm .nl-wm-glyph .nl-spray-ink  { stroke-opacity: calc(var(--nl-fade) * var(--nl-flick)); }
+.nl-wm .nl-wm-glyph .nl-spray-over { stroke-opacity: calc(.18 * var(--nl-fade) * var(--nl-flick)); }
+.nl-wm .nl-wm-glyph .nl-spray-shadow { animation: none; stroke-opacity: calc(.2 * var(--nl-fade)); }
+.nl-wm .nl-wm-glyph .nl-owl-rivet { fill-opacity: calc(.55 * var(--nl-fade) * var(--nl-flick)); }
+.nl-wm .nl-wm-glyph .nl-owl-pupil { fill-opacity: calc(var(--nl-fade) * var(--nl-flick)); animation: none; }
+.nl-wm .nl-wm-needle { stroke-opacity: calc(var(--nl-fade) * var(--nl-flick)); }
+/* the neon spill: dims while the parts are apart, surges when the mark locks as one */
+.nl-wm .nl-spill-path { animation: nl-wm-surge 14s ease-in-out infinite; }
+@keyframes nl-wm-surge { 0%, 14% { stroke-opacity: .12; } 22%, 58% { stroke-opacity: .05; } 68% { stroke-opacity: .1; } 71% { stroke-opacity: .34; } 77% { stroke-opacity: .16; } 83% { stroke-opacity: .28; } 90% { stroke-opacity: .14; } 100% { stroke-opacity: .12; } }
+.nl-wm .nl-wm-g--l .nl-spill-path, .nl-wm .nl-wm-g--p .nl-spill-path { stroke-opacity: calc(.12 * var(--nl-fade)); animation: none; }
+
+/* the ∞: tears apart and struggles, welds shut, then spins like a working engine */
+.nl-wm-loop  { animation: nl-wm-spin 14s linear infinite; }
+@keyframes nl-wm-spin { 0%, 74% { transform: rotate(0deg); animation-timing-function: cubic-bezier(.5,0,.2,1); } 88% { transform: rotate(735deg); animation-timing-function: cubic-bezier(.4,0,.6,1); } 91% { transform: rotate(712deg); } 93%, 100% { transform: rotate(720deg); } }
+.nl-wm-lobe--l { animation: nl-wm-struggle-l 14s infinite; }
+.nl-wm-lobe--r { animation: nl-wm-struggle-r 14s infinite; }
+@keyframes nl-wm-struggle-l { 0%, 18% { transform: translateX(0); } 19% { transform: translateX(-1.5px); } 20% { transform: translateX(1px); } 21% { transform: translateX(-2px); }
+  23% { transform: translateX(-18px); } 28% { transform: translateX(-15px); } 32% { transform: translateX(-19px); } 37% { transform: translateX(-16px); } 42% { transform: translateX(-19px); }
+  50% { transform: translateX(-9px); } 54% { transform: translateX(-13px); } 61% { transform: translateX(-4px); } 64% { transform: translateX(2.5px); } 66%, 100% { transform: translateX(0); } }
+@keyframes nl-wm-struggle-r { 0%, 18% { transform: translateX(0); } 19% { transform: translateX(1.5px); } 20% { transform: translateX(-1px); } 21% { transform: translateX(2px); }
+  23% { transform: translateX(18px); } 28% { transform: translateX(15px); } 32% { transform: translateX(19px); } 37% { transform: translateX(16px); } 42% { transform: translateX(19px); }
+  50% { transform: translateX(9px); } 54% { transform: translateX(13px); } 61% { transform: translateX(4px); } 64% { transform: translateX(-2.5px); } 66%, 100% { transform: translateX(0); } }
+.nl-wm-spark { fill: none; stroke: var(--neon-red); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; stroke-opacity: 0; filter: drop-shadow(0 0 4px var(--neon-red)) drop-shadow(0 0 10px var(--neon-red)); animation: nl-wm-spark 14s steps(1) infinite; }
+@keyframes nl-wm-spark { 0%, 22% { stroke-opacity: 0; } 23% { stroke-opacity: 1; } 27% { stroke-opacity: .3; } 30% { stroke-opacity: 1; } 36% { stroke-opacity: .5; } 40% { stroke-opacity: 1; } 47% { stroke-opacity: .4; } 52% { stroke-opacity: .9; } 60% { stroke-opacity: .3; } 63%, 100% { stroke-opacity: 0; } }
+.nl-wm-weld { fill: #f4ffff; fill-opacity: 0; filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 12px currentColor); animation: nl-wm-weld 14s infinite; }
+@keyframes nl-wm-weld { 0%, 64% { fill-opacity: 0; } 66% { fill-opacity: 1; } 71%, 100% { fill-opacity: 0; } }
+/* neon steam: rings of vapour rise and fade */
+.nl-wm-steam { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-opacity: 0; transform-box: fill-box; transform-origin: center; }
+.nl-wm-steam--loop { animation: nl-steam-loop 14s ease-out infinite; }
+@keyframes nl-steam-loop { 0%, 65% { stroke-opacity: 0; transform: translateY(0) scale(.5); } 68% { stroke-opacity: .55; } 82%, 100% { stroke-opacity: 0; transform: translateY(-30px) scale(1.8); } }
+.nl-wm-steam--vent { animation: nl-steam-vent 14s ease-out infinite; }
+@keyframes nl-steam-vent { 0%, 69% { stroke-opacity: 0; transform: translateY(0) scale(.5); } 73% { stroke-opacity: .5; } 88%, 100% { stroke-opacity: 0; transform: translate(10px, -26px) scale(1.9); } }
+/* the P is a pressure gauge: the needle climbs under the strain and settles when the mark locks */
+.nl-wm-needle { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; animation: nl-needle 14s infinite; }
+@keyframes nl-needle { 0%, 18% { transform: rotate(-40deg); } 23% { transform: rotate(45deg); } 28% { transform: rotate(32deg); } 32% { transform: rotate(48deg); } 37% { transform: rotate(36deg); } 50% { transform: rotate(10deg); } 54% { transform: rotate(25deg); } 64% { transform: rotate(-10deg); } 70% { transform: rotate(-44deg); } 73% { transform: rotate(-38deg); } 76%, 100% { transform: rotate(-40deg); } }

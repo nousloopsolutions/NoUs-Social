@@ -1,0 +1,14 @@
+{
+ "schema": "nous.voice-seed.v1",
+ "voice": "nous-brand",
+ "source": "brand/nous-loop/BRAND_IN_USE.md (sections 1 and 2) and ../brand-rules.json",
+ "note": "The company and product voice. Rule-based, not learned from a person; it can learn from approved posts later. Safe to keep in the repo: nothing personal.",
+ "registers": {
+  "social": {
+   "kind": "brand",
+   "voice": "nous-brand",
+   "register": "social",
+   "card": "# Write as Nous (NoUs Loop product voice)\n\n- Plain, calm, sentence case. Say what happened, then what happens next.\n- No exclamation marks, no blame, no urgency tricks, no countdowns.\n- Wellness-only claims: helps, supports, notices. Never treats, diagnoses, cures, clinical or medical.\n- Product level only: name the product and the promise, never how the memory or learning core works inside.\n- One next action, plain words. Name the enemy (big tech, data brokers) only in wall copy, never a person.\n- Wall copy (posters, banners) is a separate voice: short, lowercase, defiant, three to six words. Never mix the two in one sentence.\n- Never tag or name people. The brand lint (brand-rules.json) still runs on every post."
+  }
+ }
+}

@@ -1,0 +1,343 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "Brand~20Identity": {
+      "files": {
+        "Coursera~20354PDERML0OC.pdf": {
+          "blob": "3f9cb866319862841eee4f11d3259cbd",
+          "name": "Coursera 354PDERML0OC.pdf",
+          "sha256": "025c07df537f80698dd6f52eb0a95abbf3f4f6c839d171f05675dfb86b80af26",
+          "size": 331264,
+          "type": "application/pdf"
+        },
+        "Coursera~20BF0POCJ9N6XF.pdf": {
+          "blob": "02cda01204ee13406a6ab8e52e73e69d",
+          "name": "Coursera BF0POCJ9N6XF.pdf",
+          "sha256": "07c8446e003a02dd19b6ca6099b6370a4fbe5973b072cc2f65768851d81040c8",
+          "size": 292128,
+          "type": "application/pdf"
+        },
+        "Gemini_Generated_Image_bdbxqnbdbxqnbdbx.png": {
+          "blob": "c3e4cd650ec0e4e61fcef200c7d45537",
+          "name": "Gemini_Generated_Image_bdbxqnbdbxqnbdbx.png",
+          "sha256": "8c1009f7c0766de2158e5c3bbf3e780b7b046eb62e7fb5a7166b3097d9b6ee0d",
+          "size": 2048195,
+          "type": "image/png"
+        },
+        "Gemini_Generated_Image_bdbxqnbdbxqnbdbx~20-~20Copy.png": {
+          "blob": "c3e4cd650ec0e4e61fcef200c7d45537",
+          "name": "Gemini_Generated_Image_bdbxqnbdbxqnbdbx - Copy.png",
+          "sha256": "8c1009f7c0766de2158e5c3bbf3e780b7b046eb62e7fb5a7166b3097d9b6ee0d",
+          "size": 2048195,
+          "type": "image/png"
+        },
+        "Gemini_Generated_Image_bdbxqnbdbxqnbdbx~20-~20Copy~20~282~29.png": {
+          "blob": "c3e4cd650ec0e4e61fcef200c7d45537",
+          "name": "Gemini_Generated_Image_bdbxqnbdbxqnbdbx - Copy (2).png",
+          "sha256": "8c1009f7c0766de2158e5c3bbf3e780b7b046eb62e7fb5a7166b3097d9b6ee0d",
+          "size": 2048195,
+          "type": "image/png"
+        },
+        "Gemini_Generated_Image_bdbxqnbdbxqnbdbx~20-~20Copy~20~282~29~20-~20Copy.png": {
+          "blob": "c3e4cd650ec0e4e61fcef200c7d45537",
+          "name": "Gemini_Generated_Image_bdbxqnbdbxqnbdbx - Copy (2) - Copy.png",
+          "sha256": "8c1009f7c0766de2158e5c3bbf3e780b7b046eb62e7fb5a7166b3097d9b6ee0d",
+          "size": 2048195,
+          "type": "image/png"
+        },
+        "Gemini_Generated_Image_bdbxqnbdbxqnbdbx~20-~20Copy~20~283~29.png": {
+          "blob": "c3e4cd650ec0e4e61fcef200c7d45537",
+          "name": "Gemini_Generated_Image_bdbxqnbdbxqnbdbx - Copy (3).png",
+          "sha256": "8c1009f7c0766de2158e5c3bbf3e780b7b046eb62e7fb5a7166b3097d9b6ee0d",
+          "size": 2048195,
+          "type": "image/png"
+        },
+        "Letssever1.jpg": {
+          "blob": "e051d5623a2ef53533382e7943ba36de",
+          "name": "Letssever1.jpg",
+          "sha256": "4cec34bf1a29a56f03f6ce34564f4ee61b2840a7669fc566c5457ef0fe326562",
+          "size": 134208,
+          "type": "image/jpeg"
+        },
+        "Letssever1~20-~20Copy.jpg": {
+          "blob": "e051d5623a2ef53533382e7943ba36de",
+          "name": "Letssever1 - Copy.jpg",
+          "sha256": "4cec34bf1a29a56f03f6ce34564f4ee61b2840a7669fc566c5457ef0fe326562",
+          "size": 134208,
+          "type": "image/jpeg"
+        },
+        "Letssever1~20-~20Copy~20-~20Copy.jpg": {
+          "blob": "e051d5623a2ef53533382e7943ba36de",
+          "name": "Letssever1 - Copy - Copy.jpg",
+          "sha256": "4cec34bf1a29a56f03f6ce34564f4ee61b2840a7669fc566c5457ef0fe326562",
+          "size": 134208,
+          "type": "image/jpeg"
+        },
+        "Letssever1~20-~20Copy~20-~20Copy~20-~20Copy.jpg": {
+          "blob": "e051d5623a2ef53533382e7943ba36de",
+          "name": "Letssever1 - Copy - Copy - Copy.jpg",
+          "sha256": "4cec34bf1a29a56f03f6ce34564f4ee61b2840a7669fc566c5457ef0fe326562",
+          "size": 134208,
+          "type": "image/jpeg"
+        },
+        "Letssever1~20-~20Copy~20-~20Copy~20~282~29.jpg": {
+          "blob": "e051d5623a2ef53533382e7943ba36de",
+          "name": "Letssever1 - Copy - Copy (2).jpg",
+          "sha256": "4cec34bf1a29a56f03f6ce34564f4ee61b2840a7669fc566c5457ef0fe326562",
+          "size": 134208,
+          "type": "image/jpeg"
+        },
+        "NousLogo1.png": {
+          "blob": "24a699138aa9d17c7d11e1b4bcc04f42",
+          "name": "NousLogo1.png",
+          "sha256": "592fcb6d0085af308c66a604f94821b61a8b34805479cc9cdb26e7603dade562",
+          "size": 2101747,
+          "type": "image/png"
+        },
+        "NousLogo1~20-~20Copy.png": {
+          "blob": "24a699138aa9d17c7d11e1b4bcc04f42",
+          "name": "NousLogo1 - Copy.png",
+          "sha256": "592fcb6d0085af308c66a604f94821b61a8b34805479cc9cdb26e7603dade562",
+          "size": 2101747,
+          "type": "image/png"
+        },
+        "NousLogo2.png": {
+          "blob": "ea06703e2ff9c9043773254ac3a21029",
+          "name": "NousLogo2.png",
+          "sha256": "a48c8064a19b23d4ec3324aa3b644ffb1fa81c3bf58b42fd140a30c2d0a9883b",
+          "size": 1279433,
+          "type": "image/png"
+        },
+        "NousLogo3.png": {
+          "blob": "8860f460551cee0e6d9b9c10468a415f",
+          "name": "NousLogo3.png",
+          "sha256": "2934571b7084862bb8efd450bb4db1a3d2d22baaa0d3fab4feaca6e3d193058a",
+          "size": 655736,
+          "type": "image/png"
+        },
+        "NousLogo4.png": {
+          "blob": "022c4482bf1bef26715aa5a3ce7b5404",
+          "name": "NousLogo4.png",
+          "sha256": "d734ed0568036c30fc88c8151d7ddd4bf1a12914e42c6429c779b6c6afe4ec31",
+          "size": 1004555,
+          "type": "image/png"
+        },
+        "NousLoopIcon.png": {
+          "blob": "f840e9814119855466fd3244db8e3c30",
+          "name": "NousLoopIcon.png",
+          "sha256": "b615a96f49b62a03339831cea07c83dce3dd7b5856c8aa6c3469dc85da3aa702",
+          "size": 47104,
+          "type": "image/png"
+        },
+        "NousLoopIcon~20-~20Copy.png": {
+          "blob": "f840e9814119855466fd3244db8e3c30",
+          "name": "NousLoopIcon - Copy.png",
+          "sha256": "b615a96f49b62a03339831cea07c83dce3dd7b5856c8aa6c3469dc85da3aa702",
+          "size": 47104,
+          "type": "image/png"
+        },
+        "NousLoop_Activation_Screenshot_2026-02-28.png": {
+          "blob": "902f16a4219508679a54dc40b5816328",
+          "name": "NousLoop_Activation_Screenshot_2026-02-28.png",
+          "sha256": "40b1f0dc20f4930fc156d5397bbb82320612099d4e9a21c258d495308cb300af",
+          "size": 243276,
+          "type": "image/png"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/figma.svg": {
+          "blob": "d9486b6fba03556def493b5af80f801e",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/figma.svg",
+          "sha256": "4bdf49aceffb62e3f4f29c351192ff0d780c6c68d920cc41ad47fd9ff2dce59d",
+          "size": 1425,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/guillermo-rauch.png": {
+          "blob": "3631962f4f3df059d181af325c3925da",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/guillermo-rauch.png",
+          "sha256": "0d6930228481ca9814a32f043a4e853575252e563525cf89a85243f98a11256e",
+          "size": 4228,
+          "type": "image/png"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/lets-sever-humans.jpg": {
+          "blob": "e051d5623a2ef53533382e7943ba36de",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/lets-sever-humans.jpg",
+          "sha256": "4cec34bf1a29a56f03f6ce34564f4ee61b2840a7669fc566c5457ef0fe326562",
+          "size": 134208,
+          "type": "image/jpeg"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/logo01.svg": {
+          "blob": "b676279bc0394a49ce4e1eb4e5ba4a14",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/logo01.svg",
+          "sha256": "f214ab267b7f9f63175f2c4f51bc85ea743fea06033dbf6e79363f1ad430aee7",
+          "size": 4938,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/logo02.svg": {
+          "blob": "84cce1e138afb46e239cf66772ade339",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/logo02.svg",
+          "sha256": "5de59d1a04e4d69535165904991845ca7946b9f7a49224de0a54116e77f152c6",
+          "size": 2185,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/logo03.svg": {
+          "blob": "85c7b59f9b18604ec8b2e3aa2ed0af6e",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/logo03.svg",
+          "sha256": "53f5c642042e7f1393cdaa8472e0c386868aca030bf88963584584f174b153cf",
+          "size": 1720,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/logo04.svg": {
+          "blob": "4aca6b2ccf7384804476a53ba76756fd",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/logo04.svg",
+          "sha256": "393057871970af16686dd07f54effc032c5c34c2e146a4b1a9e938da7b637fe1",
+          "size": 3016,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/logo05.svg": {
+          "blob": "e5368659da7d9e6cd97122bc820b98fc",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/logo05.svg",
+          "sha256": "dc5d47a210b92f0a8fd39e8199082f04e00c756dd8b5a3464f417a55b1d674c3",
+          "size": 5125,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/logo06.svg": {
+          "blob": "4b1596e643cd7f3a9ad299cc0c847164",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/logo06.svg",
+          "sha256": "3bf738ec9e508f890557833cc85bf2fdca3541e026f45a559194f9e5aa25f7fe",
+          "size": 2326,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/logo07.svg": {
+          "blob": "4973fa1dbd5ae0c7e30f8810bc3af9f6",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/logo07.svg",
+          "sha256": "148c12702176baae69f6b57f64f02c524aba4fa98698bbbb65649368b4142153",
+          "size": 10697,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/logo08.svg": {
+          "blob": "1fbcf37c8b96eeb6b7f81e3957f4ca7e",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/logo08.svg",
+          "sha256": "d42b931f46ffe8917ba1177a096be6c8033f19d2b8d9674dc7c76c0756b6762c",
+          "size": 5801,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/nextjs.svg": {
+          "blob": "7733ec7acd3d0e3159450d392657e20a",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/nextjs.svg",
+          "sha256": "797047b6cee6d7ff07b19fc54e9ab5f18194d846862763221cf3be56a02e3771",
+          "size": 1644,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/nousloop-icon.png": {
+          "blob": "f840e9814119855466fd3244db8e3c30",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/nousloop-icon.png",
+          "sha256": "b615a96f49b62a03339831cea07c83dce3dd7b5856c8aa6c3469dc85da3aa702",
+          "size": 47104,
+          "type": "image/png"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/react.svg": {
+          "blob": "eee3b252c58adba37b92692eef915a1a",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/react.svg",
+          "sha256": "fe6fd68280ef726051e75d3fcafd0c7f583e295751428811685ac9426cba06e2",
+          "size": 4870,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/resend.svg": {
+          "blob": "66e0b7b5845ba9c2c98dbe7fae00682d",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/resend.svg",
+          "sha256": "a84cb8bafa90e01d4a81c4594aea8ea7a426b5f4fda72b3572d320c880378ecf",
+          "size": 521,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/shadcn.svg": {
+          "blob": "0d86c3ac29531b81b132f2376af68b14",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/shadcn.svg",
+          "sha256": "1ba67691264467eb484b0e2c2d081bff2a720167c4127c8c4c11211ff716f600",
+          "size": 419,
+          "type": "image/svg+xml"
+        },
+        "Nousloop~20-~20General-Purpose~20Neuro-Prosthetic_files/tailwind-css.svg": {
+          "blob": "7c6213b27086002638fd438a9abf37cb",
+          "name": "Nousloop - General-Purpose Neuro-Prosthetic_files/tailwind-css.svg",
+          "sha256": "52006c8b69d1185e6729179036d1e74312d0b5ca0bb35a8d1d787fbe659648d8",
+          "size": 1982,
+          "type": "image/svg+xml"
+        },
+        "free~20download-~20severance~20for~20all.jpg": {
+          "blob": "c5174b44b12c7111f2af73ff6cf43792",
+          "name": "free download- severance for all.jpg",
+          "sha256": "f124570949d1039a5b622f2dc1447875c6a0892112318d12e4c1003f671b4f19",
+          "size": 303994,
+          "type": "image/jpeg"
+        },
+        "free~20download-~20severance~20for~20all~20-~20Copy.jpg": {
+          "blob": "c5174b44b12c7111f2af73ff6cf43792",
+          "name": "free download- severance for all - Copy.jpg",
+          "sha256": "f124570949d1039a5b622f2dc1447875c6a0892112318d12e4c1003f671b4f19",
+          "size": 303994,
+          "type": "image/jpeg"
+        },
+        "free~20download-~20severance~20for~20all~20-~20Copy~20-~20Copy.jpg": {
+          "blob": "c5174b44b12c7111f2af73ff6cf43792",
+          "name": "free download- severance for all - Copy - Copy.jpg",
+          "sha256": "f124570949d1039a5b622f2dc1447875c6a0892112318d12e4c1003f671b4f19",
+          "size": 303994,
+          "type": "image/jpeg"
+        }
+      },
+      "name": "Brand Identity",
+      "order": []
+    },
+    "Logos": {
+      "name": "Logos",
+      "tile": "s",
+      "order": [
+        "nous-loop-mark.svg",
+        "cognitive-sovereignty-act.svg",
+        "behavioural-rights.svg"
+      ],
+      "files": {
+        "nous-loop-mark.svg": {
+          "name": "nous-loop-mark.svg",
+          "blob": "9163e2477da31942cec6c6c624a0759f",
+          "size": 609,
+          "type": "image/svg+xml"
+        },
+        "cognitive-sovereignty-act.svg": {
+          "name": "cognitive-sovereignty-act.svg",
+          "blob": "71f0d476a61f920b0764a8de645beb5b",
+          "size": 258,
+          "type": "image/svg+xml"
+        },
+        "behavioural-rights.svg": {
+          "name": "behavioural-rights.svg",
+          "blob": "f690d1c76c824ed6d47df38500e9f675",
+          "size": 258,
+          "type": "image/svg+xml"
+        }
+      }
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-11-23T10:50:08.578Z",
+    "v": 1
+  },
+  "docs": {
+    "sections": []
+  },
+  "groups": [
+    "Brand~20Identity",
+    "Logos"
+  ],
+  "layout": "files",
+  "libraries": [],
+  "sections": {},
+  "title": "NoUs Loop",
+  "namespace": "NoUsLoop",
+  "lastChange": {
+    "by": "Claude",
+    "at": "2026-11-23T19:00:00Z",
+    "via": "Claude Code",
+    "note": "Loop: belt removed; spray-painted by a nozzle after each weld, turbine/flywheel spin restored"
+  }
+}

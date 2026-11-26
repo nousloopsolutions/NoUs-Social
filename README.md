@@ -12,6 +12,10 @@ Brand art, campaign material and the content workflow for NoUs Loop. NoUs Loop b
 - **Content workflow:** how posts are drafted, reviewed and approved ([CONTENT_OPS.md](CONTENT_OPS.md), [drafts/](drafts/README.md)).
 - **Planning:** [content-calendar.md](content-calendar.md) and [SOCIAL_PROGRESS.md](SOCIAL_PROGRESS.md).
 - **Website copy:** text for our sites ([website-content/](website-content/)).
+- **Brand system:** the brand book, design tokens, SVG marks and GitHub social previews ([brand/](brand/nous-loop/README.md)). Start with [BRAND_IN_USE.md](brand/nous-loop/BRAND_IN_USE.md).
+- **Social tools:** the post queue, brand lint and approval-gated publisher, plus the brand-voice tools ([social-tools/](social-tools/social/README.md)).
+- **Automation:** Cheshire-Herald, the weekly draft pipeline that stages posts for human approval ([automation/cheshire-herald/](automation/cheshire-herald/README.md)).
+- **Rules for AI helpers:** what an AI collaborator may and may not touch here ([AGENTS.md](AGENTS.md)).
 
 ## How content goes out
 
