@@ -27,7 +27,7 @@ This repo holds no personal or customer data. Drafts never include anyone's priv
 
 ## Contributing and security
 
-Open an issue to suggest content. To report a security problem, email the maintainers privately rather than opening a public issue.
+Open an issue to suggest content. To report a security problem, contact the maintainers privately through GitHub (@nousloopsolutions) rather than opening a public issue.
 
 ## License
 
