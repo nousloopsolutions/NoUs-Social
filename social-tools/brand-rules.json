@@ -1,0 +1,14 @@
+{
+  "_about": "Shared copy guard for the public site (tests/copy-lint.mjs) and social posts (social/lint.py). Patterns are JavaScript- and Python-compatible.",
+  "rules": [
+    { "id": "medical-claim", "pattern": "\\b(treat(s|ment|ing)?|diagnos\\w*|cure[sd]?|clinical(ly)?|therap(y|eutic)|medical(ly)? (proven|grade))\\b", "flags": "i",
+      "allow": "not medical devices and do not diagnose or treat", "allow_flags": "i" },
+    { "id": "patent-internals", "pattern": "\\b(T?HAOT|golden (holographic )?memory|holographic|SAM\\b|Situational Awareness Matrix|absence[- ]learning|HRR|tesseract|FAISS|genetic memory)", "flags": "i" },
+    { "id": "tracker", "pattern": "(google-analytics|googletagmanager|gtag\\(|fbq\\(|facebook\\.net|vercel/analytics|hotjar|segment\\.com|plausible|<script)", "flags": "i" },
+    { "id": "third-party-asset", "pattern": "(src|href)=\"https?://(?!nousloop\\.com)", "flags": "i", "scope": "site" },
+    { "id": "name-spelling", "pattern": "\\b(NOUS LOOP(?! SOLUTIONS LLC)|Nous loop|nousloop(?!\\.com|-))\\b", "flags": "" },
+    { "id": "personal-email", "pattern": "@(gmail|outlook|hotmail|yahoo|icloud)\\.com", "flags": "i" },
+    { "id": "urgency-trick", "pattern": "\\b(act now|last chance|limited time|don't miss out|hurry)\\b", "flags": "i", "scope": "social" },
+    { "id": "mentions-person", "pattern": "(^|\\s)@[A-Za-z0-9_.-]+", "flags": "", "scope": "social" }
+  ]
+}

@@ -1,0 +1,426 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 300 270" width="600" height="540" role="img" aria-label="The impossible pyramid"><title>The impossible pyramid</title><style><![CDATA[
+:root, svg { --loop-blue:#2589d3; --loop-yellow:#fdd822; --nous-blue:#1b3b5a; --nous-gold:#f4b41a; --nous-slate:#4a5568; --wordmark-ink:#13252f; --paper:#fbf7f5; --nousloop-teal:#28efd0; --brick:#0d0d0e; --mortar:#1c1c1f; --neon-cyan:#60f0f0; --neon-blue:#4d8dff; --neon-red:#e45c5c; --surface-deep:#05070a; --surface-mid:#0d1117; --surface-sunken:#060810; --surface-raised:rgba(255, 255, 255, 0.025); --surface-hover:rgba(255, 255, 255, 0.05); --border:#1e293b; --border-strong:rgba(255, 255, 255, 0.12); --ink:#f8fafc; --ink-dim:#94a3b8; --ink-faint:#475569; --emerald:#10b981; --emerald-tint:rgba(16, 185, 129, 0.08); --emerald-line:rgba(16, 185, 129, 0.35); --amber:#f59e0b; --amber-tint:rgba(245, 158, 11, 0.08); --amber-line:rgba(245, 158, 11, 0.35); --cyan:#22d3ee; --danger:#f87171; --danger-tint:rgba(239, 68, 68, 0.08); --danger-line:rgba(239, 68, 68, 0.35); --space-2:2px; --space-4:4px; --space-6:6px; --space-8:8px; --space-10:10px; --space-12:12px; --space-16:16px; --space-24:24px; --space-32:32px; --space-40:40px; --radius-bar:2px; --radius-badge:3px; --radius-sm:4px; --radius-control:5px; --radius-md:6px; --radius-card:8px; --radius-lg:12px; --radius-pill:20px; --radius-full:50%; --glow-emerald:0 0 12px rgba(16, 185, 129, 0.2); --glow-amber:0 0 30px rgba(245, 158, 11, 0.2); --glow-dot:0 0 6px #10b981; --glow-neon-cyan:0 0 6px rgba(96, 240, 240, 0.9), 0 0 18px rgba(96, 240, 240, 0.6), 0 0 42px rgba(96, 240, 240, 0.35); --glow-neon-red:0 0 6px rgba(228, 92, 92, 0.9), 0 0 20px rgba(228, 92, 92, 0.5); --glow-teal:0 0 20px rgba(40, 239, 208, 0.35), inset 0 0 12px rgba(40, 239, 208, 0.1); --font-sans:"Inter", system-ui, "Segoe UI", sans-serif; --font-mono:"JetBrains Mono", ui-monospace, monospace; --font-tag:"Sedgwick Ave", "Permanent Marker", "Inter", sans-serif }
+
+/* ── Street layer: black brick + fresh neon spray ───────────────────────── */
+
+
+
+
+/* Live paint: the colour drifts slowly through the revolution palette.
+   Everything sprayed uses currentColor, so one animation recolours ink, overspray, glow and drips. */
+.nl-live { color: var(--neon-cyan); animation: nl-paint-shift 24s ease-in-out infinite; }
+@keyframes nl-paint-shift {
+  0%, 100% { color: var(--neon-cyan); }
+  35%      { color: var(--neon-blue); }
+  65%      { color: var(--nousloop-teal); }
+}
+
+/* Sprayed text (slogans) in the thin graffiti face, with neon glow and a pulsing dark halo */
+.nl-tag-text {
+  font-family: var(--font-tag); font-weight: 400; color: inherit;
+  text-shadow: 0 0 6px currentColor, 0 0 18px currentColor, 0 0 0 #000;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 18px rgba(0, 0, 0, 0.85));
+  animation: nl-shadow-text 3.2s ease-in-out infinite;
+}
+@keyframes nl-shadow-text {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(0,0,0,.9)) drop-shadow(0 0 12px rgba(0,0,0,.7)); }
+  50%      { filter: drop-shadow(0 0 8px rgba(0,0,0,1))  drop-shadow(0 0 28px rgba(0,0,0,.95)); }
+}
+
+/* Hand-sprayed wordmark + loop (SVG): pulsing shadow, overspray, ink. One stroke weight everywhere: ink 4.2, overspray 13. */
+.nl-graffiti { display: block; overflow: visible; }
+.nl-spray-layer path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.nl-spray-shadow { fill: none; stroke: #000; stroke-linecap: round; stroke-linejoin: round; stroke-opacity: 0.2; animation: nl-shadow-pulse 3.2s ease-in-out infinite; }
+/* the halo is three stacked soft black strokes (no blur filter, so it can never clip into boxes); the group pulses */
+@keyframes nl-shadow-pulse {
+  0%, 100% { stroke-opacity: 0.12; }
+  50%      { stroke-opacity: 0.24; }
+}
+/* Animations pulse PAINT (stroke-/fill-opacity), never a group's opacity: Chrome draws a box around
+   SVG groups with animated opacity that contain glowing strokes. */
+
+/* Eerie neon spill: a wide, heavily blurred stroke of the live colour behind every main stroke,
+   pulsing slowly on the bricks like light thrown by a real neon tube. */
+.nl-spill-path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-opacity: .12; animation: nl-spill 5s ease-in-out infinite; }
+@keyframes nl-spill { 0%, 100% { stroke-opacity: .07; } 50% { stroke-opacity: .22; } }
+.nl-spray-over { stroke: currentColor; stroke-opacity: 0.18; filter: url(#nl-mist); }
+.nl-spray-ink  { stroke: currentColor; filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 12px currentColor); }
+
+/* ── The owl: Athena's owl as a see-through neon machine ──────────────────
+   Every part is a jointed neon outline on its own pivot. One class on the <svg> sets the expression:
+   nl-owl--watch (default) · nl-owl--think (severing) · nl-owl--alert · nl-owl--calm.
+   Parts move with a slight mechanical overshoot; the sprockets turn whenever the parts they drive move. */
+.nl-owl [class^="nl-owl-"], .nl-owl [class*=" nl-owl-"] { transition: transform .7s cubic-bezier(.68,-.25,.27,1.35), opacity .5s ease, fill .5s ease; }
+/* the black halo only on the big outlines: on small parts its blur clips into dark boxes */
+.nl-owl-heart .nl-spray-shadows, .nl-owl-sprocket .nl-spray-shadows, .nl-owl-eye .nl-spray-shadows, .nl-owl-head > .nl-spray-shadows,
+.nl-owl-brow .nl-spray-shadows, .nl-owl-crown .nl-spray-shadows { display: none; }
+.nl-owl-heart { animation: nl-owl-spin 18s linear infinite; }
+@keyframes nl-owl-spin { to { transform: rotate(360deg); } }
+.nl-owl-pupil { fill: currentColor; filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 10px currentColor); animation: nl-owl-glow 4s ease-in-out infinite; }
+.nl-owl-node  { fill: currentColor; filter: drop-shadow(0 0 4px currentColor); animation: nl-owl-glow 3s ease-in-out infinite; }
+@keyframes nl-owl-glow { 0%, 100% { fill-opacity: .7; } 50% { fill-opacity: 1; } }
+.nl-owl-rivet { fill: currentColor; fill-opacity: .55; }
+/* spinning parts carry no grain filter: a rotating group with a filtered child is composited as a box */
+.nl-owl-heart [filter], .nl-owl-sprocket [filter], .nl-owl-wm-spin [filter], .nl-owl-aperture [filter], .nl-owl-wm-aperture [filter] { filter: none; }
+
+/* Wordmark machinery: NoUs is built like the owl. The o is the owl's lens (its aperture breathes),
+   the N's joints are sprockets that slowly turn, stroke ends are riveted plates. */
+.nl-wm .nl-owl-wm-spin { animation: nl-owl-spin 14s linear infinite; }
+.nl-wm .nl-wm-spin--rev { animation-direction: reverse; }
+.nl-wm .nl-owl-wm-aperture { animation: nl-wm-aperture 5s cubic-bezier(.68,-.25,.27,1.35) infinite; }
+@keyframes nl-wm-aperture { 0%, 100% { transform: scale(1); } 45%, 55% { transform: scale(.6); } }
+.nl-wm .nl-owl-wm-spin .nl-spray-shadows, .nl-wm .nl-owl-wm-aperture .nl-spray-shadows { display: none; }
+
+/* ── NoUs L∞P: one coordinated neon machine, 28s master cycle ─────────────────────────────
+   0–14%   LOCKED: "NoUs L∞P", steady.
+   14–20%  UNLOCK: every glyph jolts loose, the flicker starts.
+   20–58%  TRANSFORM: No | Us pull apart → the U folds to a lowercase u (Nous) → the s swells (NoUS);
+           the lens o turns a full rotation, N swings, L drops, P cranks; the ∞ tears apart and
+           struggles; L and P blink out like failing neon.
+   58–70%  REASSEMBLE: glyphs click home one after another with a mechanical overshoot; the ∞ welds
+           shut with steam; L and P blink back on.
+   70–100% LOCKED: the whole mark surges brighter together, and the ∞ spins like a working engine. */
+@property --nl-fade  { syntax: "<number>"; inherits: true; initial-value: 1; }
+@property --nl-flick { syntax: "<number>"; inherits: true; initial-value: 1; }
+.nl-wm .nl-wm-glyph { animation: 28s cubic-bezier(.68,-.25,.27,1.35) infinite; }
+.nl-wm .nl-wm-g--n { animation-name: nl-g-n, nl-pw-n; animation-timing-function: cubic-bezier(.68,-.25,.27,1.35), steps(1); }
+.nl-wm .nl-wm-g--o { animation-name: nl-g-o, nl-pw-o; animation-timing-function: cubic-bezier(.68,-.25,.27,1.35), steps(1); }
+.nl-wm .nl-wm-g--u { animation-name: nl-g-u, nl-pw-u; animation-timing-function: cubic-bezier(.68,-.25,.27,1.35), steps(1); }
+.nl-wm .nl-wm-g--s { animation-name: nl-g-s, nl-pw-s; animation-timing-function: cubic-bezier(.68,-.25,.27,1.35), steps(1); }
+.nl-wm .nl-wm-g--l { animation-name: nl-g-l, nl-pw-l; animation-timing-function: cubic-bezier(.68,-.25,.27,1.35), steps(1); }
+.nl-wm .nl-wm-g--p { animation-name: nl-g-p, nl-pw-p; animation-timing-function: cubic-bezier(.68,-.25,.27,1.35), steps(1); }
+@keyframes nl-g-n { 0%, 7% { transform: none; } 8% { transform: translate(-3px,-2px) rotate(-3deg); } 10.5% { transform: translateX(-18px) rotate(-6deg); } 15% { transform: translateX(-20px) rotate(-6deg); }
+  18% { transform: translate(-8px,-4px) rotate(4deg); } 23% { transform: translateX(-4px); } 26% { transform: translate(-10px,3px) rotate(-4deg); } 29% { transform: translateX(2px) rotate(1deg); } 30.5%, 50% { transform: none; }
+  50% { transform: none; } 53%, 55.5% { transform: translateY(10px) rotate(-14deg) scale(.95); } 56.5% { transform: scale(1.14,.8); } 57.5% { transform: scale(.9,1.18) rotate(7deg); } 58.5% { transform: rotate(-3deg) skewX(4deg); } 60% { transform: none; } 76.5% { transform: scale(1.08,.9); } 77.5% { transform: translateY(-6px) scale(.96,1.06); } 79% { transform: none; } 84% { transform: translateY(-5px) scaleY(1.05); } 86% { transform: scale(1.05,.95); } 88% { transform: none; } 92% { transform: translateY(-4px); } 94%, 100% { transform: none; }
+}
+@keyframes nl-g-o { 0%, 7% { transform: rotate(0deg); } 8% { transform: rotate(30deg); } 10.5% { transform: translateX(-18px) rotate(120deg) scale(.9); } 15% { transform: translateX(-20px) rotate(180deg) scale(.9); }
+  20% { transform: translateX(-6px) rotate(260deg) scale(1.1); } 26% { transform: rotate(330deg) scale(.95); } 30% { transform: rotate(355deg); } 31.5%, 50% { transform: rotate(360deg); }
+  50% { transform: rotate(360deg); } 53%, 57.5% { transform: translate(-10px,16px) rotate(220deg) scale(.9); } 59% { transform: translateX(8px) rotate(400deg); } 60% { transform: translateX(4px) rotate(380deg) scale(1.08,.9); } 61.5% { transform: rotate(360deg); } 77% { transform: translateY(-8px) rotate(360deg) scale(.95,1.08); } 78.5% { transform: rotate(360deg) scale(1.08,.92); } 80% { transform: rotate(360deg); } 86.5% { transform: translateY(-5px) rotate(360deg); } 88.5%, 100% { transform: rotate(360deg); }
+}
+@keyframes nl-g-u { 0%, 7% { transform: none; } 8% { transform: translateY(-3px); } 10.5% { transform: translateX(18px); } 15% { transform: translateX(20px); } 18.5% { transform: translateX(6px) scaleY(.58); }
+  23% { transform: scaleY(.58); } 26% { transform: translateX(4px) scaleY(.9) rotate(4deg); } 30% { transform: scaleY(1.05); } 31.5%, 50% { transform: none; }
+  50% { transform: none; } 53%, 60% { transform: translateY(6px) rotate(-28deg) scale(.92); } 61% { transform: scale(1.28,.72); } 62% { transform: translateY(-16px) scale(.86,1.2); } 63% { transform: scale(1.14,.86); } 64% { transform: skewX(-6deg); } 65% { transform: skewX(3deg); } 66% { transform: none; } 78% { transform: scale(1.08,.92); } 79.5% { transform: translateY(-6px) scale(.96,1.05); } 81% { transform: none; } 85.5% { transform: translateY(-5px); } 87.5% { transform: none; } 93% { transform: translateY(-4px); } 95%, 100% { transform: none; }
+}
+@keyframes nl-g-s { 0%, 7% { transform: none; } 8% { transform: rotate(6deg); } 10.5% { transform: translateX(18px) rotate(-8deg); } 15% { transform: translateX(20px); } 20% { transform: translateX(6px) rotate(10deg); }
+  23% { transform: scale(1.5); } 28% { transform: scale(1.5) rotate(-4deg); } 31% { transform: scale(.95); } 32.5%, 50% { transform: none; }
+  50% { transform: none; } 53%, 62.5% { transform: translateY(4px) rotate(88deg) scale(.82); } 63.5% { transform: scale(1.15,.75); } 64.5% { transform: translateY(-14px) scale(.85,1.4) rotate(-6deg); } 65.5% { transform: translateY(-2px) rotate(14deg); } 66.5% { transform: rotate(-5deg) skewX(-6deg); } 68% { transform: none; } 79% { transform: translateY(-6px) scaleY(1.08); } 80.5% { transform: none; } 87% { transform: translateY(-5px); } 89% { transform: none; } 94% { transform: translateY(-4px); } 96%, 100% { transform: none; }
+}
+@keyframes nl-g-l { 0%, 7% { transform: none; } 9% { transform: translateY(4px) rotate(-4deg); } 15% { transform: translateY(10px) rotate(-12deg); } 25% { transform: translate(-6px,6px) rotate(8deg); } 31.5% { transform: translateY(-3px); } 33.5%, 50% { transform: none; }
+  50% { transform: none; } 53%, 65.5% { transform: rotate(-72deg) translateY(4px); } 66.5% { transform: rotate(8deg) skewX(-8deg); } 67.5% { transform: rotate(-4deg) skewX(5deg); } 68.5% { transform: none; } 80.5% { transform: translateY(-6px); } 82% { transform: none; } 88% { transform: translateY(-5px); } 90%, 100% { transform: none; }
+}
+@keyframes nl-g-p { 0%, 7% { transform: none; } 9% { transform: rotate(5deg); } 15% { transform: translate(10px,6px) rotate(14deg); } 25% { transform: translate(4px,-4px) rotate(-6deg); } 32.5% { transform: rotate(2deg); } 34.5%, 50% { transform: none; }
+  50% { transform: none; } 53%, 70.5% { transform: translateY(10px) rotate(16deg) scale(.82); } 71.5% { transform: scale(1.08); } 72.5% { transform: scale(1.18,1.1); } 73.5% { transform: scale(1.22,1.14) rotate(-3deg); } 74.5% { transform: scale(.92,1.05); } 76% { transform: scale(1.04,.96); } 77.5% { transform: none; } 89% { transform: translateY(-5px); } 91%, 100% { transform: none; }
+}
+/* power: each glyph goes dark when the sign falls apart and lights the moment the chain reaction bumps it */
+@keyframes nl-pw-n { 0%, 50% { --nl-fade: 1; }
+  50% { --nl-fade: 1; } 51% { --nl-fade: .4; } 51.5% { --nl-fade: .85; } 52.5% { --nl-fade: .12; } 53% { --nl-fade: .3; } 54%, 55.9% { --nl-fade: .08; } 56% { --nl-fade: .9; } 56.4% { --nl-fade: .3; } 56.8%, 100% { --nl-fade: 1; } }
+@keyframes nl-pw-o { 0%, 50% { --nl-fade: 1; }
+  50% { --nl-fade: 1; } 51% { --nl-fade: .4; } 51.5% { --nl-fade: .85; } 52.5% { --nl-fade: .12; } 53% { --nl-fade: .3; } 54%, 58.9% { --nl-fade: .08; } 59% { --nl-fade: .9; } 59.4% { --nl-fade: .3; } 59.8%, 100% { --nl-fade: 1; } }
+@keyframes nl-pw-u { 0%, 50% { --nl-fade: 1; }
+  50% { --nl-fade: 1; } 51% { --nl-fade: .4; } 51.5% { --nl-fade: .85; } 52.5% { --nl-fade: .12; } 53% { --nl-fade: .3; } 54%, 60.9% { --nl-fade: .08; } 61% { --nl-fade: .9; } 61.4% { --nl-fade: .3; } 61.8%, 100% { --nl-fade: 1; } }
+@keyframes nl-pw-s { 0%, 50% { --nl-fade: 1; }
+  50% { --nl-fade: 1; } 51% { --nl-fade: .4; } 51.5% { --nl-fade: .85; } 52.5% { --nl-fade: .12; } 53% { --nl-fade: .3; } 54%, 63.9% { --nl-fade: .08; } 64% { --nl-fade: .9; } 64.4% { --nl-fade: .3; } 64.8%, 100% { --nl-fade: 1; } }
+@keyframes nl-pw-l {  0%, 9% { --nl-fade: 1; } 9.5% { --nl-fade: .25; } 10% { --nl-fade: .85; } 11% { --nl-fade: .1; } 12% { --nl-fade: .5; } 13%, 30% { --nl-fade: .06; } 31% { --nl-fade: .7; } 31.5% { --nl-fade: .15; } 32.5% { --nl-fade: .9; } 33% { --nl-fade: .3; } 34%, 50% { --nl-fade: 1; }
+  50% { --nl-fade: 1; } 51% { --nl-fade: .4; } 51.5% { --nl-fade: .85; } 52.5% { --nl-fade: .12; } 53% { --nl-fade: .3; } 54%, 66.4% { --nl-fade: .08; } 66.5% { --nl-fade: .9; } 66.9% { --nl-fade: .3; } 67.3%, 100% { --nl-fade: 1; } }
+@keyframes nl-pw-p {  0%, 9% { --nl-fade: 1; } 9.5% { --nl-fade: .25; } 10% { --nl-fade: .85; } 11% { --nl-fade: .1; } 12% { --nl-fade: .5; } 13%, 30% { --nl-fade: .06; } 31% { --nl-fade: .7; } 31.5% { --nl-fade: .15; } 32.5% { --nl-fade: .9; } 33% { --nl-fade: .3; } 34%, 50% { --nl-fade: 1; }
+  50% { --nl-fade: 1; } 51% { --nl-fade: .4; } 51.5% { --nl-fade: .85; } 52.5% { --nl-fade: .12; } 53% { --nl-fade: .3; } 54%, 71.9% { --nl-fade: .08; } 72% { --nl-fade: .9; } 72.4% { --nl-fade: .3; } 72.8%, 100% { --nl-fade: 1; } }
+/* every glyph flickers slightly on its own rhythm (a separate inner layer, offset per glyph) */
+.nl-wm .nl-wm-flick { animation: nl-wm-flick 7s steps(1) infinite; }
+@keyframes nl-wm-flick { 0%, 100% { --nl-flick: 1; } 9% { --nl-flick: .78; } 10% { --nl-flick: 1; } 31% { --nl-flick: .62; } 32% { --nl-flick: .95; } 33% { --nl-flick: .7; } 34% { --nl-flick: 1; } 58% { --nl-flick: .85; } 59% { --nl-flick: 1; } 81% { --nl-flick: .66; } 82% { --nl-flick: 1; } }
+.nl-wm .nl-wm-glyph .nl-spray-ink  { stroke-opacity: calc(var(--nl-fade) * var(--nl-flick)); }
+.nl-wm .nl-wm-glyph .nl-spray-over { stroke-opacity: calc(.18 * var(--nl-fade) * var(--nl-flick)); }
+.nl-wm .nl-wm-glyph .nl-spray-shadow { animation: none; stroke-opacity: calc(.2 * var(--nl-fade)); }
+.nl-wm .nl-wm-glyph .nl-owl-rivet { fill-opacity: calc(.55 * var(--nl-fade) * var(--nl-flick)); }
+.nl-wm .nl-wm-glyph .nl-owl-pupil { fill-opacity: calc(var(--nl-fade) * var(--nl-flick)); animation: none; }
+.nl-wm .nl-wm-needle { stroke-opacity: calc(var(--nl-fade) * var(--nl-flick)); }
+/* the neon spill: dims while the parts are apart, surges when the mark locks as one */
+.nl-wm .nl-spill-path { animation: nl-wm-surge 28s ease-in-out infinite; }
+@keyframes nl-wm-surge { 0%, 7% { stroke-opacity: .12; } 11%, 29% { stroke-opacity: .05; } 34% { stroke-opacity: .1; } 35.5% { stroke-opacity: .34; } 38.5% { stroke-opacity: .16; } 41.5% { stroke-opacity: .28; } 45% { stroke-opacity: .14; } 50% { stroke-opacity: .12; }
+  50% { stroke-opacity: .12; } 53%, 75% { stroke-opacity: .05; } 77% { stroke-opacity: .36; } 82% { stroke-opacity: .16; } 86% { stroke-opacity: .3; } 92% { stroke-opacity: .14; } 100% { stroke-opacity: .12; }
+}
+.nl-wm .nl-wm-glyph .nl-spill-path { stroke-opacity: calc(.14 * var(--nl-fade)); animation: none; }
+
+/* the ∞: tears apart and struggles, welds shut, then spins like a working engine */
+.nl-wm-loop  { animation: nl-wm-spin 28s linear infinite; }
+@keyframes nl-wm-spin { 0%, 37% { transform: rotate(0deg); animation-timing-function: cubic-bezier(.5,0,.2,1); } 44% { transform: rotate(735deg); animation-timing-function: cubic-bezier(.4,0,.6,1); } 45.5% { transform: rotate(712deg); } 46.5%, 50% { transform: rotate(720deg); }
+  50%, 69.5% { transform: rotate(720deg); } 70.5% { transform: rotate(720deg) scale(1.22,.84); } 71.5% { transform: rotate(720deg) scale(.92,1.08); } 72.5% { transform: rotate(720deg); animation-timing-function: cubic-bezier(.4,0,.3,1); } 79% { transform: rotate(1800deg); } 81% { transform: rotate(1832deg); } 83% { transform: rotate(1795deg); } 85%, 100% { transform: rotate(1800deg); }
+}
+.nl-wm-lobe--l { animation: nl-wm-struggle-l 28s infinite; }
+.nl-wm-lobe--r { animation: nl-wm-struggle-r 28s infinite; }
+@keyframes nl-wm-struggle-l { 0%, 9% { transform: translateX(0); } 9.5% { transform: translateX(-1.5px); } 10% { transform: translateX(1px); } 10.5% { transform: translateX(-2px); }
+  11.5% { transform: translateX(-18px); } 14% { transform: translateX(-15px); } 16% { transform: translateX(-19px); } 18.5% { transform: translateX(-16px); } 21% { transform: translateX(-19px); }
+  25% { transform: translateX(-9px); } 27% { transform: translateX(-13px); } 30.5% { transform: translateX(-4px); } 32% { transform: translateX(2.5px); } 33%, 50% { transform: translateX(0); }
+  50% { transform: translateX(0); } 53%, 67.5% { transform: translateX(-16px); } 68.5% { transform: translateX(2.5px); } 69.5%, 100% { transform: translateX(0); }
+}
+@keyframes nl-wm-struggle-r { 0%, 9% { transform: translateX(0); } 9.5% { transform: translateX(1.5px); } 10% { transform: translateX(-1px); } 10.5% { transform: translateX(2px); }
+  11.5% { transform: translateX(18px); } 14% { transform: translateX(15px); } 16% { transform: translateX(19px); } 18.5% { transform: translateX(16px); } 21% { transform: translateX(19px); }
+  25% { transform: translateX(9px); } 27% { transform: translateX(13px); } 30.5% { transform: translateX(4px); } 32% { transform: translateX(-2.5px); } 33%, 50% { transform: translateX(0); }
+  50% { transform: translateX(0); } 53%, 67.5% { transform: translateX(16px); } 68.5% { transform: translateX(-2.5px); } 69.5%, 100% { transform: translateX(0); }
+}
+.nl-wm-spark { fill: none; stroke: var(--neon-red); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; stroke-opacity: 0; filter: drop-shadow(0 0 4px var(--neon-red)) drop-shadow(0 0 10px var(--neon-red)); animation: nl-wm-spark 28s steps(1) infinite; }
+@keyframes nl-wm-spark { 0%, 11% { stroke-opacity: 0; } 11.5% { stroke-opacity: 1; } 13.5% { stroke-opacity: .3; } 15% { stroke-opacity: 1; } 18% { stroke-opacity: .5; } 20% { stroke-opacity: 1; } 23.5% { stroke-opacity: .4; } 26% { stroke-opacity: .9; } 30% { stroke-opacity: .3; } 31.5%, 50% { stroke-opacity: 0; }
+  50%, 100% { stroke-opacity: 0; }
+}
+.nl-wm-weld { fill: #f4ffff; fill-opacity: 0; filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 12px currentColor); animation: nl-wm-weld 28s infinite; }
+@keyframes nl-wm-weld { 0%, 32% { fill-opacity: 0; } 33% { fill-opacity: 1; } 35.5%, 50% { fill-opacity: 0; }
+  50%, 68% { fill-opacity: 0; } 68.5% { fill-opacity: 1; } 72%, 100% { fill-opacity: 0; }
+}
+/* neon steam: rings of vapour rise and fade */
+.nl-wm-steam { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-opacity: 0; transform-box: fill-box; transform-origin: center; }
+.nl-wm-steam--loop { animation: nl-steam-loop 28s ease-out infinite; }
+@keyframes nl-steam-loop { 0%, 32.5% { stroke-opacity: 0; transform: translateY(0) scale(.5); } 34% { stroke-opacity: .55; } 41%, 50% { stroke-opacity: 0; transform: translateY(-30px) scale(1.8); }
+  50%, 68% { stroke-opacity: 0; transform: translateY(0) scale(.5); } 70% { stroke-opacity: .5; } 82%, 100% { stroke-opacity: 0; transform: translateY(-30px) scale(1.8); }
+}
+.nl-wm-steam--vent { animation: nl-steam-vent 28s ease-out infinite; }
+@keyframes nl-steam-vent { 0%, 34.5% { stroke-opacity: 0; transform: translateY(0) scale(.5); } 36.5% { stroke-opacity: .5; } 44%, 50% { stroke-opacity: 0; transform: translate(10px, -26px) scale(1.9); }
+  50%, 72.5% { stroke-opacity: 0; transform: translateY(0) scale(.5); } 75% { stroke-opacity: .65; } 90%, 100% { stroke-opacity: 0; transform: translate(10px, -26px) scale(1.9); }
+}
+/* the P is a pressure gauge: the needle climbs under the strain and settles when the mark locks */
+.nl-wm-needle { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; animation: nl-needle 28s infinite; }
+@keyframes nl-needle { 0%, 9% { transform: rotate(-40deg); } 11.5% { transform: rotate(45deg); } 14% { transform: rotate(32deg); } 16% { transform: rotate(48deg); } 18.5% { transform: rotate(36deg); } 25% { transform: rotate(10deg); } 27% { transform: rotate(25deg); } 32% { transform: rotate(-10deg); } 35% { transform: rotate(-44deg); } 36.5% { transform: rotate(-38deg); } 38%, 50% { transform: rotate(-40deg); }
+  50%, 70.5% { transform: rotate(-60deg); } 72.5% { transform: rotate(60deg); } 73.5% { transform: rotate(48deg); } 74.5% { transform: rotate(75deg); } 76% { transform: rotate(-50deg); } 78% { transform: rotate(-34deg); } 80%, 100% { transform: rotate(-40deg); }
+}
+
+/* Rubber-hose owl: the whole owl squashes and stretches to its own beat, a different gait per expression */
+.nl-owl.nl-live { transform-origin: 50% 92%; }
+.nl-owl--watch.nl-live { animation: nl-paint-shift 24s ease-in-out infinite, nl-owl-bob 2.6s cubic-bezier(.68,-.25,.27,1.35) infinite; }
+.nl-owl--think.nl-live { animation: nl-paint-shift 24s ease-in-out infinite, nl-owl-jitter .9s steps(3) infinite; }
+.nl-owl--alert.nl-live { animation: nl-paint-shift 24s ease-in-out infinite, nl-owl-hop 1.4s cubic-bezier(.68,-.25,.27,1.35) infinite; }
+.nl-owl--calm.nl-live  { animation: nl-paint-shift 24s ease-in-out infinite, nl-owl-sway 5s ease-in-out infinite; }
+@keyframes nl-owl-bob    { 0%, 100% { transform: none; } 20% { transform: scale(1.04,.95); } 45% { transform: translateY(-6px) scale(.97,1.04); } 70% { transform: scale(1.02,.98); } }
+@keyframes nl-owl-jitter { 0%, 100% { transform: none; } 33% { transform: skewX(-2deg) translateX(-1px); } 66% { transform: skewX(2deg) translateX(1px); } }
+@keyframes nl-owl-hop    { 0%, 100% { transform: none; } 15% { transform: scale(1.1,.86); } 35% { transform: translateY(-14px) scale(.92,1.1); } 55% { transform: scale(1.08,.9); } 70% { transform: none; } }
+@keyframes nl-owl-sway   { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg) scale(1.01,.99); } }
+
+/* Escher winks: where one neon strand passes over another, a dark cut opens a gap in the one beneath
+   (an over-under weave). On the ∞ it makes a knot with no seam to cut; on the Emblem the three bars
+   each pass over the next, so the pyramid is an impossible structure. Hollow tubes have a dark core. */
+.nl-weave-cut { fill: none; stroke: var(--brick); stroke-linecap: butt; }
+.nl-tube-core { fill: none; stroke: var(--brick); stroke-linecap: round; stroke-opacity: .92; }
+.nl-emblem .nl-owl-wm-aperture { animation: nl-wm-aperture 6s cubic-bezier(.68,-.25,.27,1.35) infinite; }
+.nl-emblem .nl-owl-wm-aperture .nl-spray-shadows { display: none; }
+
+
+/* severing: concentrating. Head cocks, brows press down, apertures focus, the heart races, knowledge chases through the crown */
+.nl-owl--think .nl-owl-head { transform: rotate(-8deg); }
+.nl-owl--think .nl-owl-sprocket--neck { transform: rotate(-90deg); }
+.nl-owl--think .nl-owl-brow { transform: translateY(4px); }
+.nl-owl--think .nl-owl-aperture { transform: scale(.55); }
+.nl-owl--think .nl-owl-heart { animation-duration: 2.4s; }
+.nl-owl--think .nl-owl-node { animation: nl-owl-chase .75s steps(1) infinite; }
+@keyframes nl-owl-chase { 0% { fill-opacity: 1; } 34%, 100% { fill-opacity: .25; } }
+
+/* alert: a threat to your data. Brows slam down, eyes go wide and red, head rises, wings flare on their sprockets */
+.nl-owl--alert .nl-owl-head { transform: translateY(-5px); }
+.nl-owl--alert .nl-owl-brow--l { transform: rotate(12deg) translateY(2px); }
+.nl-owl--alert .nl-owl-brow--r { transform: rotate(-12deg) translateY(2px); }
+.nl-owl--alert .nl-owl-aperture { transform: scale(1.35); }
+.nl-owl--alert .nl-owl-pupil { fill: var(--neon-red); animation: none; fill-opacity: 1; }
+.nl-owl--alert .nl-owl-wing--l { transform: rotate(26deg); }
+.nl-owl--alert .nl-owl-wing--r { transform: rotate(-26deg); }
+.nl-owl--alert .nl-owl-sprocket--l { transform: rotate(-180deg); }
+.nl-owl--alert .nl-owl-sprocket--r { transform: rotate(180deg); }
+.nl-owl--alert .nl-owl-heart { animation-duration: 5s; }
+.nl-owl--alert .nl-owl-node { animation: none; fill-opacity: 1; }
+
+/* calm: severed and safe. Brows level out, lenses half-shutter, head tilts, wings tuck, the heart barely turns */
+.nl-owl--calm .nl-owl-head { transform: rotate(5deg); }
+.nl-owl--calm .nl-owl-sprocket--neck { transform: rotate(60deg); }
+.nl-owl--calm .nl-owl-brow--l { transform: rotate(-19deg); }
+.nl-owl--calm .nl-owl-brow--r { transform: rotate(19deg); }
+.nl-owl--calm .nl-owl-aperture { transform: scaleY(.4); }
+.nl-owl--calm .nl-owl-wing--l { transform: rotate(-4deg); }
+.nl-owl--calm .nl-owl-wing--r { transform: rotate(4deg); }
+.nl-owl--calm .nl-owl-sprocket--l { transform: rotate(40deg); }
+.nl-owl--calm .nl-owl-sprocket--r { transform: rotate(-40deg); }
+.nl-owl--calm .nl-owl-heart { animation-duration: 40s; }
+.nl-owl--calm .nl-owl-node { animation: none; fill-opacity: .35; }
+
+/* ── SprayLoader: a nozzle sprays the sideways 8, over and over ─────────── */
+.nl-spray { display: inline-block; width: 120px; height: 56px; overflow: visible; vertical-align: middle; }
+.nl-spray--sm { width: 34px; height: 16px; }
+.nl-spray--lg { width: 300px; height: 138px; }
+.nl-spray path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.nl-spray__ghost { stroke: currentColor; stroke-opacity: 0.07; }
+.nl-spray__over, .nl-spray__paint { stroke: currentColor; stroke-dasharray: 100 100; stroke-dashoffset: 100; animation: nl-spray-draw 2.8s linear infinite; }
+.nl-spray__over  { --nl-paint-o: .18; filter: url(#nl-mist); }
+.nl-spray__paint { filter: drop-shadow(0 0 2px currentColor) drop-shadow(0 0 9px currentColor); }
+.nl-spray__mist   { fill: currentColor; fill-opacity: 0.3; filter: url(#nl-mist); }
+.nl-spray__nozzle { fill: var(--ink); filter: drop-shadow(0 0 4px currentColor); }
+.nl-spray__head   { animation: nl-spray-head 2.8s linear infinite; }
+@keyframes nl-spray-draw {
+  0%   { stroke-dashoffset: 100; stroke-opacity: var(--nl-paint-o, 1); }
+  70%  { stroke-dashoffset: 0; }
+  88%  { stroke-dashoffset: 0; stroke-opacity: var(--nl-paint-o, 1); }
+  100% { stroke-dashoffset: 0; stroke-opacity: 0; }
+}
+@keyframes nl-spray-head { 0%, 69% { visibility: visible; } 71%, 100% { visibility: hidden; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .nl-live, .nl-tag-text, .nl-spray-shadow, .nl-spill-path, .nl-owl-heart, .nl-owl-pupil, .nl-owl-node, .nl-owl-wm-spin, .nl-owl-wm-aperture,
+  .nl-wm-loop, .nl-wm-lobe--l, .nl-wm-lobe--r, .nl-wm-spark, .nl-wm-weld, .nl-wm-steam, .nl-wm-needle, .nl-spray__head,
+  .nl-wm-glyph, .nl-wm-flick { animation: none !important; }
+  .nl-owl [class^="nl-owl-"], .nl-owl [class*=" nl-owl-"] { transition: none; }
+  .nl-spray__over, .nl-spray__paint { stroke-dashoffset: 0; animation: nl-spray-calm 2.8s ease-in-out infinite; }
+  .nl-spray__head { display: none; }
+}
+@keyframes nl-spray-calm { 0%, 100% { stroke-opacity: .6; } 50% { stroke-opacity: 1; } }
+
+/* Nous Loop components — plain CSS, class prefix nl-.
+   Lifted from wonderland-desktop/src/App.css (Sovereign Dark v2); every value is a token. */
+
+.nl-root, .nl-root * { box-sizing: border-box; }
+.nl-root { font-family: var(--font-sans); color: var(--ink); background: var(--surface-deep); }
+
+/* Button — forge-btn / forge-btn-primary */
+.nl-btn {
+  display: inline-flex; align-items: center; gap: var(--space-6);
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  color: var(--ink-dim);
+  font: 500 10.4px/14px var(--font-mono);
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 7px 14px;
+  cursor: pointer; white-space: nowrap;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.nl-btn:hover { color: var(--ink); border-color: var(--border-strong); }
+.nl-btn:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+.nl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.nl-btn--primary { background: var(--emerald-tint); border-color: var(--emerald-line); color: var(--emerald); }
+.nl-btn--primary:hover:not(:disabled) { color: var(--emerald); border-color: var(--emerald); box-shadow: var(--glow-emerald); }
+.nl-btn--danger { background: var(--danger-tint); border-color: var(--danger-line); color: var(--danger); }
+.nl-btn--icon { padding: 4px 8px; font: 400 12px/16px var(--font-sans); letter-spacing: 0; text-transform: none; border-radius: var(--radius-sm); background: none; }
+
+/* Badge — status-badge */
+.nl-badge {
+  display: inline-block;
+  font: 500 9.6px/14px var(--font-mono);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-badge);
+  border: 1px solid var(--border);
+  color: var(--ink-dim);
+}
+.nl-badge--ok { color: var(--emerald); border-color: var(--emerald-line); background: var(--emerald-tint); }
+.nl-badge--warn { color: var(--amber); border-color: var(--amber-line); background: var(--amber-tint); }
+.nl-badge--err { color: var(--danger); border-color: var(--danger-line); background: var(--danger-tint); }
+
+/* Input — forge-input, command-input */
+.nl-input, .nl-textarea {
+  width: 100%;
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  font: 400 12px/18px var(--font-mono);
+  padding: 7px 12px;
+  transition: border-color 0.15s;
+}
+.nl-textarea { min-height: 64px; resize: vertical; color: var(--ink-dim); }
+.nl-input::placeholder, .nl-textarea::placeholder { color: var(--ink-faint); }
+.nl-input:focus, .nl-textarea:focus { outline: none; border-color: var(--emerald); }
+.nl-command { display: flex; align-items: center; gap: var(--space-12); padding: var(--space-16) var(--space-24); background: var(--surface-sunken); border-top: 1px solid var(--border); }
+.nl-command__lambda { color: var(--emerald); font: 400 24px/1 var(--font-mono); }
+.nl-command__input { flex: 1; background: transparent; border: 0; outline: none; color: var(--emerald); font: 400 19.2px/24px var(--font-mono); }
+.nl-command__input::placeholder { color: var(--ink-faint); }
+
+/* Tabs — tab-bar / tab-btn */
+.nl-tabs { display: flex; gap: var(--space-2); padding: 0 var(--space-24); background: var(--surface-sunken); border-bottom: 1px solid var(--border); }
+.nl-tab {
+  background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px;
+  color: var(--ink-dim);
+  font: 500 10.4px/14px var(--font-mono); letter-spacing: 2px; text-transform: uppercase;
+  padding: 10px 16px; cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.nl-tab:hover { color: var(--ink); }
+.nl-tab[aria-selected="true"] { color: var(--emerald); border-bottom-color: var(--emerald); }
+.nl-tab:focus-visible { outline: 2px solid var(--emerald); outline-offset: -2px; }
+
+/* VitalCard — vital-card */
+.nl-vital {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--space-16);
+  display: flex; flex-direction: column; gap: var(--space-4);
+  transition: border-color 0.2s;
+}
+.nl-vital:hover { border-color: var(--border-strong); }
+.nl-vital__label { font: 500 9.6px/14px var(--font-mono); letter-spacing: 2px; text-transform: uppercase; color: var(--ink-dim); }
+.nl-vital__value { font: 700 25.6px/1 var(--font-sans); margin-top: var(--space-4); color: var(--ink); }
+.nl-vital__sub { font: 400 11.5px/16px var(--font-sans); color: var(--ink-dim); }
+.nl-vital__bar { height: 4px; background: var(--surface-hover); border-radius: var(--radius-bar); overflow: hidden; margin-top: var(--space-10); }
+.nl-vital__fill { height: 100%; border-radius: var(--radius-bar); background: var(--emerald); }
+.nl-vital__fill--warn { background: var(--amber); }
+.nl-vital__fill--err { background: var(--danger); }
+
+/* StreamLog — stream-msg */
+.nl-stream { font: 400 12.8px/18px var(--font-mono); color: var(--ink-dim); padding: var(--space-24); background: var(--surface-mid); }
+.nl-stream__head { font: 500 11.2px/16px var(--font-mono); letter-spacing: 2px; text-transform: uppercase; color: var(--emerald); margin-bottom: var(--space-12); }
+.nl-stream__msg { margin: 0 0 var(--space-12); padding-left: var(--space-10); border-left: 2px solid var(--border); }
+.nl-stream__msg--user { color: var(--emerald); }
+.nl-stream__msg--assistant { color: var(--ink); }
+.nl-stream__msg--system { color: var(--amber); }
+
+/* Alert — panel-error, generalised */
+.nl-alert { border: 1px solid var(--border); border-radius: var(--radius-md); padding: 10px var(--space-16); font: 400 12.8px/18px var(--font-sans); color: var(--ink-dim); background: var(--surface-raised); }
+.nl-alert--err { background: var(--danger-tint); border-color: var(--danger-line); color: var(--danger); }
+.nl-alert--warn { background: var(--amber-tint); border-color: var(--amber-line); color: var(--amber); }
+.nl-alert--ok { background: var(--emerald-tint); border-color: var(--emerald-line); color: var(--emerald); }
+
+/* StatusDot — ws-dot */
+.nl-dot { display: inline-block; width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--ink-faint); vertical-align: middle; flex-shrink: 0; }
+.nl-dot--on { background: var(--emerald); box-shadow: var(--glow-dot); animation: nl-pulse-emerald 2s infinite; }
+.nl-dot--warn { background: var(--amber); }
+.nl-dot--err { background: var(--danger); }
+@keyframes nl-pulse-emerald {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .nl-dot--on { animation: none; } }
+
+/* wm-owl-flight */
+/* The owl perches on the ∞ while NoUs L∞P stands. When the sign breaks apart it hops and flies off
+   (up and away to the right), and when the sign is whole again it swoops back in from the left and lands
+   with a rubber-hose squash. Synced to the 28s two-act cycle; wings flap only in flight. */
+.nl-wm-owl { animation: nl-wm-owl-fly 28s cubic-bezier(.45,0,.55,1) infinite; }
+@keyframes nl-wm-owl-fly {
+  0%, 7% { transform: none; } 8% { transform: translate(4px,-8px) scale(.95,1.06); } 9.5% { transform: translate(60px,-80px) rotate(12deg); }
+  11.5%, 32.9% { transform: translate(170px,-180px) scale(.7) rotate(18deg); } 33% { transform: translate(-170px,-180px) scale(.7) rotate(-15deg); }
+  35% { transform: translate(-30px,-40px) rotate(-8deg); } 36% { transform: translate(0,4px) scale(1.08,.88); } 36.8% { transform: translate(0,-3px) scale(.96,1.05); } 37.5%, 50% { transform: none; }
+  51% { transform: translate(4px,-8px) scale(.95,1.06); } 52.5% { transform: translate(60px,-80px) rotate(12deg); }
+  54.5%, 75.9% { transform: translate(170px,-180px) scale(.7) rotate(18deg); } 76% { transform: translate(-170px,-180px) scale(.7) rotate(-15deg); }
+  78% { transform: translate(-30px,-40px) rotate(-8deg); } 79% { transform: translate(0,4px) scale(1.08,.88); } 79.8% { transform: translate(0,-3px) scale(.96,1.05); } 80.5%, 100% { transform: none; }
+}
+.nl-wm-owl .nl-owl-wing--l { animation: nl-wm-flap-l 28s linear infinite; }
+.nl-wm-owl .nl-owl-wing--r { animation: nl-wm-flap-r 28s linear infinite; }
+@keyframes nl-wm-flap-l { 0% { transform: rotate(0deg); } 6.99% { transform: rotate(0deg); } 7% { transform: rotate(42deg); } 7.6% { transform: rotate(-6deg); } 8.2% { transform: rotate(42deg); } 8.8% { transform: rotate(-6deg); } 9.4% { transform: rotate(42deg); } 10% { transform: rotate(-6deg); } 10.6% { transform: rotate(42deg); } 11.2% { transform: rotate(-6deg); } 11.5% { transform: rotate(0deg); } 32.99% { transform: rotate(0deg); } 33% { transform: rotate(42deg); } 33.6% { transform: rotate(-6deg); } 34.2% { transform: rotate(42deg); } 34.8% { transform: rotate(-6deg); } 35.4% { transform: rotate(42deg); } 36% { transform: rotate(0deg); } 49.99% { transform: rotate(0deg); } 50% { transform: rotate(42deg); } 50.6% { transform: rotate(-6deg); } 51.2% { transform: rotate(42deg); } 51.8% { transform: rotate(-6deg); } 52.4% { transform: rotate(42deg); } 53% { transform: rotate(-6deg); } 53.6% { transform: rotate(42deg); } 54.2% { transform: rotate(-6deg); } 54.5% { transform: rotate(0deg); } 75.99% { transform: rotate(0deg); } 76% { transform: rotate(42deg); } 76.6% { transform: rotate(-6deg); } 77.2% { transform: rotate(42deg); } 77.8% { transform: rotate(-6deg); } 78.4% { transform: rotate(42deg); } 79% { transform: rotate(0deg); } 100% { transform: rotate(0deg); } }
+@keyframes nl-wm-flap-r { 0% { transform: rotate(0deg); } 6.99% { transform: rotate(0deg); } 7% { transform: rotate(-42deg); } 7.6% { transform: rotate(6deg); } 8.2% { transform: rotate(-42deg); } 8.8% { transform: rotate(6deg); } 9.4% { transform: rotate(-42deg); } 10% { transform: rotate(6deg); } 10.6% { transform: rotate(-42deg); } 11.2% { transform: rotate(6deg); } 11.5% { transform: rotate(0deg); } 32.99% { transform: rotate(0deg); } 33% { transform: rotate(-42deg); } 33.6% { transform: rotate(6deg); } 34.2% { transform: rotate(-42deg); } 34.8% { transform: rotate(6deg); } 35.4% { transform: rotate(-42deg); } 36% { transform: rotate(0deg); } 49.99% { transform: rotate(0deg); } 50% { transform: rotate(-42deg); } 50.6% { transform: rotate(6deg); } 51.2% { transform: rotate(-42deg); } 51.8% { transform: rotate(6deg); } 52.4% { transform: rotate(-42deg); } 53% { transform: rotate(6deg); } 53.6% { transform: rotate(-42deg); } 54.2% { transform: rotate(6deg); } 54.5% { transform: rotate(0deg); } 75.99% { transform: rotate(0deg); } 76% { transform: rotate(-42deg); } 76.6% { transform: rotate(6deg); } 77.2% { transform: rotate(-42deg); } 77.8% { transform: rotate(6deg); } 78.4% { transform: rotate(-42deg); } 79% { transform: rotate(0deg); } 100% { transform: rotate(0deg); } }
+@media (prefers-reduced-motion: reduce) { .nl-wm-owl, .nl-wm-owl .nl-owl-wing--l, .nl-wm-owl .nl-owl-wing--r { animation: none !important; } }
+/* /wm-owl-flight */
+
+/* wm-belt */
+/* The ∞ is spray-painted. Its old paint stays as a ghost; after each weld (and twice while the sign stands) a
+   nozzle with a mist cloud re-sprays it as a figure 8, the left lobe then the right, then it spins like a turbine. */
+.nl-wm-ghost .nl-spray-ink { stroke-opacity: .3; }
+.nl-wm-ghost .nl-spray-over { stroke-opacity: .08; }
+.nl-wm-paint, .nl-wm-paint-over { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100 100; }
+.nl-wm-paint { stroke-width: 8; filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 12px currentColor); }
+.nl-wm-paint-over { stroke-width: 22; stroke-opacity: .18; filter: url(#nl-mist); }
+.nl-wm-nozzle { fill: none; stroke: currentColor; stroke-width: 18; stroke-linecap: round; stroke-dasharray: .01 99.99; filter: url(#nl-mist); }
+.nl-wm-fresh--l .nl-wm-paint, .nl-wm-fresh--l .nl-wm-paint-over { animation: nl-wm-paint-l 28s linear infinite; }
+.nl-wm-fresh--r .nl-wm-paint, .nl-wm-fresh--r .nl-wm-paint-over { animation: nl-wm-paint-r 28s linear infinite; }
+.nl-wm-fresh--l .nl-wm-nozzle { animation: nl-wm-nozzle-l 28s linear infinite; }
+.nl-wm-fresh--r .nl-wm-nozzle { animation: nl-wm-nozzle-r 28s linear infinite; }
+@keyframes nl-wm-paint-l { 0%, 0% { stroke-dashoffset: 100; } 1.75% { stroke-dashoffset: 0; } 33.49% { stroke-dashoffset: 0; } 33.5%, 33.5% { stroke-dashoffset: 100; } 35.25% { stroke-dashoffset: 0; } 68.99% { stroke-dashoffset: 0; } 69%, 69% { stroke-dashoffset: 100; } 70.75% { stroke-dashoffset: 0; } 87.99% { stroke-dashoffset: 0; } 88%, 88% { stroke-dashoffset: 100; } 89.75% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
+@keyframes nl-wm-paint-r { 0%, 1.75% { stroke-dashoffset: 100; } 3.5% { stroke-dashoffset: 0; } 33.49% { stroke-dashoffset: 0; } 33.5%, 35.25% { stroke-dashoffset: 100; } 37% { stroke-dashoffset: 0; } 68.99% { stroke-dashoffset: 0; } 69%, 70.75% { stroke-dashoffset: 100; } 72.5% { stroke-dashoffset: 0; } 87.99% { stroke-dashoffset: 0; } 88%, 89.75% { stroke-dashoffset: 100; } 91.5% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; } }
+@keyframes nl-wm-nozzle-l { 0% { stroke-dashoffset: 0; stroke-opacity: 0; } 0% { stroke-dashoffset: 0; stroke-opacity: 0; } 0% { stroke-dashoffset: 0; stroke-opacity: 1; } 1.75% { stroke-dashoffset: -100; stroke-opacity: 1; } 1.76% { stroke-dashoffset: -100; stroke-opacity: 0; } 33.49% { stroke-dashoffset: 0; stroke-opacity: 0; } 33.5% { stroke-dashoffset: 0; stroke-opacity: 1; } 35.25% { stroke-dashoffset: -100; stroke-opacity: 1; } 35.26% { stroke-dashoffset: -100; stroke-opacity: 0; } 68.99% { stroke-dashoffset: 0; stroke-opacity: 0; } 69% { stroke-dashoffset: 0; stroke-opacity: 1; } 70.75% { stroke-dashoffset: -100; stroke-opacity: 1; } 70.76% { stroke-dashoffset: -100; stroke-opacity: 0; } 87.99% { stroke-dashoffset: 0; stroke-opacity: 0; } 88% { stroke-dashoffset: 0; stroke-opacity: 1; } 89.75% { stroke-dashoffset: -100; stroke-opacity: 1; } 89.76% { stroke-dashoffset: -100; stroke-opacity: 0; } 100% { stroke-dashoffset: -100; stroke-opacity: 0; } }
+@keyframes nl-wm-nozzle-r { 0% { stroke-dashoffset: 0; stroke-opacity: 0; } 1.74% { stroke-dashoffset: 0; stroke-opacity: 0; } 1.75% { stroke-dashoffset: 0; stroke-opacity: 1; } 3.5% { stroke-dashoffset: -100; stroke-opacity: 1; } 3.51% { stroke-dashoffset: -100; stroke-opacity: 0; } 35.24% { stroke-dashoffset: 0; stroke-opacity: 0; } 35.25% { stroke-dashoffset: 0; stroke-opacity: 1; } 37% { stroke-dashoffset: -100; stroke-opacity: 1; } 37.01% { stroke-dashoffset: -100; stroke-opacity: 0; } 70.74% { stroke-dashoffset: 0; stroke-opacity: 0; } 70.75% { stroke-dashoffset: 0; stroke-opacity: 1; } 72.5% { stroke-dashoffset: -100; stroke-opacity: 1; } 72.51% { stroke-dashoffset: -100; stroke-opacity: 0; } 89.74% { stroke-dashoffset: 0; stroke-opacity: 0; } 89.75% { stroke-dashoffset: 0; stroke-opacity: 1; } 91.5% { stroke-dashoffset: -100; stroke-opacity: 1; } 91.51% { stroke-dashoffset: -100; stroke-opacity: 0; } 100% { stroke-dashoffset: -100; stroke-opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .nl-wm-paint, .nl-wm-paint-over { animation: none !important; stroke-dashoffset: 0; } .nl-wm-nozzle { animation: none !important; stroke-opacity: 0; } }
+/* /wm-belt */
+
+]]></style><svg x="0" y="0" width="280" height="250" overflow="visible" class="nl-graffiti nl-live nl-emblem" viewBox="0 0 280 250" role="img" aria-label="The impossible pyramid: the surveillance pyramid turned upside down, its bars woven so it cannot exist, with the owl's lens inside watching back"><defs><filter id="nl-grain" filterUnits="userSpaceOnUse" x="-100" y="-100" width="900" height="500"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter><filter id="nl-spray-edge" filterUnits="userSpaceOnUse" x="-100" y="-100" width="900" height="500"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5" result="d"/><feTurbulence type="fractalNoise" baseFrequency="2.4" numOctaves="1" seed="2" result="s"/><feColorMatrix in="s" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.4 2.1" result="speck"/><feComposite in="d" in2="speck" operator="in"/></filter><filter id="nl-halo" filterUnits="userSpaceOnUse" x="-100" y="-100" width="900" height="500"><feGaussianBlur stdDeviation="8"/></filter><filter id="nl-mist" filterUnits="userSpaceOnUse" x="-100" y="-100" width="900" height="500"><feGaussianBlur stdDeviation="4.5"/></filter><filter id="nl-spill" filterUnits="userSpaceOnUse" x="-100" y="-100" width="900" height="500"><feGaussianBlur stdDeviation="16"/></filter></defs><g filter="url(#nl-spill)"><path class="nl-spill-path" stroke-width="40" d="M16.0 40.0 L264.0 40.0"/><path class="nl-spill-path" stroke-width="40" d="M252.0 19.2 L128.0 233.8"/><path class="nl-spill-path" stroke-width="40" d="M152.0 233.8 L28.0 19.2"/></g><g class="nl-spray-layer nl-spray-shadows"><path class="nl-spray-shadow" stroke-width="57" d="M16.0 40.0 L264.0 40.0"/><path class="nl-spray-shadow" stroke-width="45" d="M16.0 40.0 L264.0 40.0"/><path class="nl-spray-shadow" stroke-width="35" d="M16.0 40.0 L264.0 40.0"/></g><g class="nl-spray-layer"><path class="nl-spray-over" stroke-width="31" d="M16.0 40.0 L264.0 40.0"/></g><g class="nl-spray-layer" filter="url(#nl-grain)"><path class="nl-spray-ink" stroke-width="15" d="M16.0 40.0 L264.0 40.0"/></g><path class="nl-tube-core" stroke-width="7" d="M16.0 40.0 L264.0 40.0"/><g class="nl-spray-layer nl-spray-shadows"><path class="nl-spray-shadow" stroke-width="57" d="M252.0 19.2 L128.0 233.8"/><path class="nl-spray-shadow" stroke-width="45" d="M252.0 19.2 L128.0 233.8"/><path class="nl-spray-shadow" stroke-width="35" d="M252.0 19.2 L128.0 233.8"/></g><g class="nl-spray-layer"><path class="nl-spray-over" stroke-width="31" d="M252.0 19.2 L128.0 233.8"/></g><g class="nl-spray-layer" filter="url(#nl-grain)"><path class="nl-spray-ink" stroke-width="15" d="M252.0 19.2 L128.0 233.8"/></g><path class="nl-tube-core" stroke-width="7" d="M252.0 19.2 L128.0 233.8"/><g class="nl-spray-layer nl-spray-shadows"><path class="nl-spray-shadow" stroke-width="57" d="M152.0 233.8 L28.0 19.2"/><path class="nl-spray-shadow" stroke-width="45" d="M152.0 233.8 L28.0 19.2"/><path class="nl-spray-shadow" stroke-width="35" d="M152.0 233.8 L28.0 19.2"/></g><g class="nl-spray-layer"><path class="nl-spray-over" stroke-width="31" d="M152.0 233.8 L28.0 19.2"/></g><g class="nl-spray-layer" filter="url(#nl-grain)"><path class="nl-spray-ink" stroke-width="15" d="M152.0 233.8 L28.0 19.2"/></g><path class="nl-tube-core" stroke-width="7" d="M152.0 233.8 L28.0 19.2"/><path class="nl-weave-cut" stroke-width="25" d="M28.0 40.0 L54.0 40.0"/><g class="nl-spray-layer nl-spray-shadows"><path class="nl-spray-shadow" stroke-width="57" d="M16.0 40.0 L78.0 40.0"/><path class="nl-spray-shadow" stroke-width="45" d="M16.0 40.0 L78.0 40.0"/><path class="nl-spray-shadow" stroke-width="35" d="M16.0 40.0 L78.0 40.0"/></g><g class="nl-spray-layer"><path class="nl-spray-over" stroke-width="31" d="M16.0 40.0 L78.0 40.0"/></g><g class="nl-spray-layer" filter="url(#nl-grain)"><path class="nl-spray-ink" stroke-width="15" d="M16.0 40.0 L78.0 40.0"/></g><path class="nl-tube-core" stroke-width="7" d="M16.0 40.0 L78.0 40.0"/><path class="nl-weave-cut" stroke-width="25" d="M246.0 29.6 L233.0 52.1"/><g class="nl-spray-layer nl-spray-shadows"><path class="nl-spray-shadow" stroke-width="57" d="M252.0 19.2 L221.0 72.9"/><path class="nl-spray-shadow" stroke-width="45" d="M252.0 19.2 L221.0 72.9"/><path class="nl-spray-shadow" stroke-width="35" d="M252.0 19.2 L221.0 72.9"/></g><g class="nl-spray-layer"><path class="nl-spray-over" stroke-width="31" d="M252.0 19.2 L221.0 72.9"/></g><g class="nl-spray-layer" filter="url(#nl-grain)"><path class="nl-spray-ink" stroke-width="15" d="M252.0 19.2 L221.0 72.9"/></g><path class="nl-tube-core" stroke-width="7" d="M252.0 19.2 L221.0 72.9"/><path class="nl-weave-cut" stroke-width="25" d="M146.0 223.4 L133.0 200.9"/><g class="nl-spray-layer nl-spray-shadows"><path class="nl-spray-shadow" stroke-width="57" d="M152.0 233.8 L121.0 180.1"/><path class="nl-spray-shadow" stroke-width="45" d="M152.0 233.8 L121.0 180.1"/><path class="nl-spray-shadow" stroke-width="35" d="M152.0 233.8 L121.0 180.1"/></g><g class="nl-spray-layer"><path class="nl-spray-over" stroke-width="31" d="M152.0 233.8 L121.0 180.1"/></g><g class="nl-spray-layer" filter="url(#nl-grain)"><path class="nl-spray-ink" stroke-width="15" d="M152.0 233.8 L121.0 180.1"/></g><path class="nl-tube-core" stroke-width="7" d="M152.0 233.8 L121.0 180.1"/><g class="nl-spray-layer nl-spray-shadows"><path class="nl-spray-shadow" stroke-width="42" d="M116 98 a24 24 0 1 0 48 0 a24 24 0 1 0 -48 0"/><path class="nl-spray-shadow" stroke-width="30" d="M116 98 a24 24 0 1 0 48 0 a24 24 0 1 0 -48 0"/><path class="nl-spray-shadow" stroke-width="20" d="M116 98 a24 24 0 1 0 48 0 a24 24 0 1 0 -48 0"/></g><g class="nl-spray-layer"><path class="nl-spray-over" stroke-width="16" d="M116 98 a24 24 0 1 0 48 0 a24 24 0 1 0 -48 0"/></g><g class="nl-spray-layer" filter="url(#nl-grain)"><path class="nl-spray-ink" stroke-width="6" d="M116 98 a24 24 0 1 0 48 0 a24 24 0 1 0 -48 0"/></g><g class="nl-owl-wm-aperture" style="transform-origin:140px 98px"><g class="nl-spray-layer nl-spray-shadows"><path class="nl-spray-shadow" stroke-width="34" d="M128 98 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0"/><path class="nl-spray-shadow" stroke-width="34" d="M140 74 L144 86"/><path class="nl-spray-shadow" stroke-width="34" d="M162 102 L152 100"/><path class="nl-spray-shadow" stroke-width="34" d="M124 116 L132 108"/><path class="nl-spray-shadow" stroke-width="22" d="M128 98 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0"/><path class="nl-spray-shadow" stroke-width="22" d="M140 74 L144 86"/><path class="nl-spray-shadow" stroke-width="22" d="M162 102 L152 100"/><path class="nl-spray-shadow" stroke-width="22" d="M124 116 L132 108"/><path class="nl-spray-shadow" stroke-width="12" d="M128 98 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0"/><path class="nl-spray-shadow" stroke-width="12" d="M140 74 L144 86"/><path class="nl-spray-shadow" stroke-width="12" d="M162 102 L152 100"/><path class="nl-spray-shadow" stroke-width="12" d="M124 116 L132 108"/></g><g class="nl-spray-layer"><path class="nl-spray-over" stroke-width="8" d="M128 98 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0"/><path class="nl-spray-over" stroke-width="8" d="M140 74 L144 86"/><path class="nl-spray-over" stroke-width="8" d="M162 102 L152 100"/><path class="nl-spray-over" stroke-width="8" d="M124 116 L132 108"/></g><g class="nl-spray-layer" filter="url(#nl-grain)"><path class="nl-spray-ink" stroke-width="3" d="M128 98 a12 12 0 1 0 24 0 a12 12 0 1 0 -24 0"/><path class="nl-spray-ink" stroke-width="3" d="M140 74 L144 86"/><path class="nl-spray-ink" stroke-width="3" d="M162 102 L152 100"/><path class="nl-spray-ink" stroke-width="3" d="M124 116 L132 108"/></g></g><circle class="nl-owl-pupil" cx="140" cy="98" r="4.5"/><circle class="nl-owl-rivet" cx="70" cy="40" r="2.2"/><circle class="nl-owl-rivet" cx="210" cy="40" r="2.2"/><circle class="nl-owl-rivet" cx="140" cy="183" r="2.2"/></svg></svg>

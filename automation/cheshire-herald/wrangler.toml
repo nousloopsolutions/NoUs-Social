@@ -1,0 +1,30 @@
+# Cheshire-Herald — weekly social draft pipeline (Ghost-IP / KV staging)
+# KV id: npx wrangler kv namespace create SOCIAL_STAGING
+name = "cheshire-herald"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[ai]
+binding = "AI"
+
+[[kv_namespaces]]
+binding = "SOCIAL_STAGING"
+id = "00000000000000000000000000000000"
+preview_id = "00000000000000000000000000000000"
+
+[triggers]
+crons = ["0 14 * * MON"]
+
+[vars]
+HERALD_MODEL = "@cf/meta/llama-3-8b-instruct"
+
+# Secrets (wrangler secret put — never commit):
+# SOVEREIGN_SALT, SCRUBBER_SECRET, LINKEDIN_ACCESS_TOKEN, LINKEDIN_AUTHOR_URN,
+# X_BEARER_TOKEN, FACEBOOK_PAGE_ACCESS_TOKEN, FACEBOOK_PAGE_ID
+
+# Optional route after dashboard setup:
+# [[routes]]
+# pattern = "api.nousloop.com/herald/*"
+# zone_name = "nousloop.com"
